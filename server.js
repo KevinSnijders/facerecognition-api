@@ -25,7 +25,7 @@ const PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(cors());
 
-app.get('/', (req, res) => {});
+app.get('/', (req, res) => {res.send('It\'s working')});
 app.post('/signin', signin.handleSignin(db, bcrypt));
 app.post('/register', register.handleRegister(db, bcrypt, saltRounds));
 app.get('/profile/:id', profile.handleProfileGet(db));
