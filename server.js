@@ -14,13 +14,13 @@ const db = knex({
 	connection: {
 		host: '127.0.0.1',
 		user: 'postgres',
-		password: '',
+		password: 'welkom01',
 		database: 'smart-brain'
 	}
 });
 
 const app = express();
-
+const PORT = 3000;
 app.use(bodyParser.json());
 app.use(cors());
 
@@ -29,7 +29,8 @@ app.post('/signin', signin.handleSignin(db, bcrypt));
 app.post('/register', register.handleRegister(db, bcrypt, saltRounds));
 app.get('/profile/:id', profile.handleProfileGet(db));
 app.put('/image', image.handleImage(db));
+app.post('/imageurl', image.handleApiCall());
 
-app.listen(3000, () => {
-	console.log('App is running on port 3000');
+app.listen(PORT, () => {
+	console.log(`App is running on port ${PORT}`);
 });
