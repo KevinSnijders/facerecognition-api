@@ -10,7 +10,7 @@ services:
     working_dir: /usr/src/smart-brain-api
     environment:
       POSTGRES_URI: postgres://ebrimudeejqjba:24883298b449b365296c90962873aab1f8a7a4f64fc5ca99a765096f981ea175@ec2-54-221-212-126.compute-1.amazonaws.com:5432/d8ookq3pldusei
-      #REDIS_URI: redis://redis:6379
+      REDIS_URI: redis://kevin.s:288f1e4a7f3c18f3167b3d603fb5a896@85.25.11.9:2352/
     links:
       - postgres
       - redis
@@ -31,7 +31,7 @@ services:
       - "5432"
 
   # Redis
-#  redis:
-#    image: redis
-#    ports:
-#      - "6379"
+  redis:
+    image: redis
+    ports:
+      - "6379"
