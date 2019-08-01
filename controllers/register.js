@@ -1,7 +1,7 @@
 const handleRegister = (db, bcrypt, saltRounds) => (req, res) => {
 	const {email, name, password} = req.body;
 	if (!email || !name || !password) {
-		return res.status(400).json('incorrect form submission');
+		return res.status(400).json('Incorrect form submission, please fill in the fields');
 	}
 	bcrypt.genSalt(saltRounds, function (err, salt) {
 		bcrypt.hash(password, salt, function (err, hash) {
@@ -27,7 +27,7 @@ const handleRegister = (db, bcrypt, saltRounds) => (req, res) => {
 					.then(trx.commit)
 					.catch(trx.rollback);
 			})
-				.catch(err => res.status(400).json('Unable to register'))
+				.catch(err => res.status(400).json('This email address is already in use, please use a different email address'))
 		})
 	});
 };

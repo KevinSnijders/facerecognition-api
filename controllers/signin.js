@@ -1,7 +1,8 @@
 const handleSignin = (db, bcrypt) => (req, res) => {
+	console.log(req);
 	const {email, password} = req.body;
 	if (!email || !password) {
-		return res.status(400).json('incorrect form submission');
+		return res.status(400).json('Incorrect form submission, please fill in the fields');
 	}
 	db.select('email', 'hash').from('login')
 		.where('email', '=', email)
@@ -14,10 +15,10 @@ const handleSignin = (db, bcrypt) => (req, res) => {
 							res.json(user[0])
 						}).catch(err => res.status(400).json('unable to get user'))
 				} else {
-					res.status(400).json('wrong credentials');
+					res.status(400).json('The email address or password you entered is not valid, please try again');
 				}
 			});
-		}).catch(err => res.status(400).json('wrong credentials'));
+		}).catch(err => res.status(400).json('The email address or password you entered is not valid, please try again'));
 };
 
 module.exports = {

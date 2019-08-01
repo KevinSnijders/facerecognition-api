@@ -17,7 +17,6 @@ const db = knex({
 	// 	host: process.env.DATABASE_URL,
 	// 	ssl: true
 	// }
-
 	// Localhost connect
 	connection: process.env.POSTGRES_URI
 });
