@@ -14,12 +14,16 @@ const redisClient = require("./redis/redisConnection");
 const db = knex({
 	client: 'pg',
 	// Server connection
-	 //connection: {
-	// 	host: process.env.DATABASE_URL,
-	// 	ssl: true
-	// }
+	 connection: {
+		host: "ec2-54-221-212-126.compute-1.amazonaws.com",
+	 	user: 'ebrimudeejqjba',
+	 	password: '24883298b449b365296c90962873aab1f8a7a4f64fc5ca99a765096f981ea175\n',
+	 	database: 'd8ookq3pldusei',
+		ssl: true,
+		 port: 5432
+	}
 	// Localhost connect
-	connection: process.env.POSTGRES_URI
+	//connection: process.env.POSTGRES_URI
 });
 
 const PORT = process.env.PORT || 3000;
