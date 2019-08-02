@@ -9,11 +9,12 @@ const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 const auth = require('./middleware/authorization');
+const redisClient = require("./redis/redisConnection");
 
 const db = knex({
 	client: 'pg',
 	// Server connection
-	// connection: {
+	 //connection: {
 	// 	host: process.env.DATABASE_URL,
 	// 	ssl: true
 	// }
@@ -37,6 +38,7 @@ app.post('/profile/:id', auth.requireAuth, profile.handleProfileUpdate(db));
 app.put('/image', auth.requireAuth, image.handleImage(db));
 app.post('/imageurl', auth.requireAuth, image.handleApiCall());
 
+console.log(`Redis client` ${redisClient});
 app.listen(PORT, () => {
 	console.log(`App is running on port ${PORT}`);
 });
