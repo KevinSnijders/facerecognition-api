@@ -40,6 +40,6 @@ app.post('/imageurl', auth.requireAuth, image.handleApiCall());
 
 
 app.listen(PORT, () => {
-	console.log(`Redis client` ${redisClient});
+	console.log(redisClient);
 	console.log(`App is running on port ${PORT}`);
 });
