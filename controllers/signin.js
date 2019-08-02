@@ -9,8 +9,10 @@ const handleSignin = (db, bcrypt, req) => {
 	return db.select('email', 'hash').from('login')
 		.where('email', '=', email)
 		.then(data => {
+			console.log("data" + data);
 			return bcrypt.compare(password, data[0].hash).then(function (result) {
 				if (result) {
+					console.log("result" + result);
 					return db.select('*').from('users')
 						.where('email', '=', email)
 						.then(user => user[0])
@@ -20,7 +22,7 @@ const handleSignin = (db, bcrypt, req) => {
 				}
 			});
 		})
-		.catch(err => err)
+		.catch(err => console.log(err))
 };
 
 const getAuthTokenId = (req, res) => {
