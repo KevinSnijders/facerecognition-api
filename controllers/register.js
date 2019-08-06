@@ -5,6 +5,11 @@ const handleRegister = (db, bcrypt, saltRounds) => (req, res) => {
 			success: 'false',
 			message: 'Incorrect form submission, please fill in the fields'
 		});
+	} else if (!validateEmail(email)) {
+		return res.status(400).json({
+			success: 'false',
+			message: 'Incorrect form submission, please fill in a correct email address'
+		});
 	}
 	bcrypt.genSalt(saltRounds, function (err, salt) {
 		bcrypt.hash(password, salt, function (err, hash) {
@@ -33,6 +38,11 @@ const handleRegister = (db, bcrypt, saltRounds) => (req, res) => {
 				.catch(err => res.status(400).json('This email address is already in use, please use a different email address'))
 		})
 	});
+};
+
+const validateEmail = (email) => {
+	let reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	return reg.test(String(email).toLowerCase());
 };
 
 module.exports = {
