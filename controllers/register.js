@@ -1,7 +1,10 @@
 const handleRegister = (db, bcrypt, saltRounds) => (req, res) => {
 	const {email, name, password} = req.body;
 	if (!email || !name || !password) {
-		return res.status(400).json('Incorrect form submission, please fill in the fields');
+		return res.status(400).json({
+			success: 'false',
+			message: 'Incorrect form submission, please fill in the fields'
+		});
 	}
 	bcrypt.genSalt(saltRounds, function (err, salt) {
 		bcrypt.hash(password, salt, function (err, hash) {

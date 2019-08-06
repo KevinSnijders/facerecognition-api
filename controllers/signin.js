@@ -4,7 +4,10 @@ const redisClient = require("../redis/redisConnection");
 const handleSignin = (db, bcrypt, req) => {
 	const {email, password} = req.body;
 	if (!email || !password) {
-		return Promise.reject('Incorrect form submission, please fill in the fields');
+		return Promise.reject({
+			success: false,
+			message: 'Incorrect form submission, please fill in the fields'
+		});
 	}
 	return db.select('email', 'hash').from('login')
 		.where('email', '=', email)
