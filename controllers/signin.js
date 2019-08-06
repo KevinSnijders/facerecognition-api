@@ -52,7 +52,7 @@ const createSessions = (user) => {
 	const token = signToken(email);
 	return setToken(token, id)
 		.then(() => {
-			return {success: 'true', userId: id, token}
+			return {success: true, userId: id, token}
 		})
 		.catch(console.log)
 };

@@ -24,7 +24,7 @@ const handleRegister = (db, bcrypt, saltRounds) => (req, res) => {
 								joined: new Date()
 							})
 							.then(user => {
-								res.json({success: 'true', user: user[0]});
+								res.json({success: true, user: user[0]});
 							})
 					})
 					.then(trx.commit)
