@@ -1,2 +1,2 @@
-module.exports = require('redis').createClient(tls="redis://kevin.s:d71618f4bb96ca976b65b86824067301@85.25.11.9:2387/");
+module.exports = require('redis').createClient(tls="redis://redistogo:09809e2d73e83b238e90fd6abf18da86@hammerjaw.redistogo.com:11522/");
 
